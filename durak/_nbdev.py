@@ -3,7 +3,9 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"Card": "00_core.ipynb",
-         "test_if_card_has_higher_value": "00_core.ipynb"}
+         "test_if_card_has_higher_value": "00_core.ipynb",
+         "test_if_card_has_same_value": "00_core.ipynb",
+         "test_if_color_matches": "00_core.ipynb"}
 
 modules = ["core.py"]
 
