@@ -1,12 +1,12 @@
-# Project name here
-> Summary description here.
+# Durak
+> A python based version of the Russian card game Durak
 
 
 This file will become your README and also the index of your documentation.
 
 ## Install
 
-`pip install your_project_name`
+`pip install durak`
 
 ## How to use
 
