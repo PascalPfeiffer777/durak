@@ -19,10 +19,7 @@ index = {"Card": "00_core.ipynb",
          "determine_starting_player": "00_core.ipynb",
          "make_trumps": "00_core.ipynb",
          "draw_cards": "00_core.ipynb",
-         "player_names": "01_Game.ipynb",
-         "players": "01_Game.ipynb",
-         "cards": "01_Game.ipynb",
-         "trump": "01_Game.ipynb"}
+         "game_setup": "01_Game.ipynb"}
 
 modules = ["core.py",
            "game.py"]

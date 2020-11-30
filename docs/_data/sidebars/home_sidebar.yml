@@ -14,7 +14,7 @@ entries:
       url: core.html
     - output: web,pdf
       title: Title
-      url: constants.html
+      url: Game.html
     output: web
     title: durak
   output: web
