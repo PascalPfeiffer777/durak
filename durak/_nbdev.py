@@ -3,11 +3,29 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"Card": "00_core.ipynb",
+         "CARD_VALUES": "00_core.ipynb",
+         "CARD_COLORS": "00_core.ipynb",
+         "generate_random_card": "00_core.ipynb",
          "test_if_card_has_higher_value": "00_core.ipynb",
          "test_if_card_has_same_value": "00_core.ipynb",
-         "test_if_color_matches": "00_core.ipynb"}
+         "test_if_color_matches": "00_core.ipynb",
+         "test_if_lower_trump_wins": "00_core.ipynb",
+         "test_if_lower_trump_loses": "00_core.ipynb",
+         "gen_card_deck": "00_core.ipynb",
+         "Player": "00_core.ipynb",
+         "iterate_cards": "00_core.ipynb",
+         "deal_starting_hand": "00_core.ipynb",
+         "draw_trump_card": "00_core.ipynb",
+         "determine_starting_player": "00_core.ipynb",
+         "make_trumps": "00_core.ipynb",
+         "draw_cards": "00_core.ipynb",
+         "player_names": "01_Game.ipynb",
+         "players": "01_Game.ipynb",
+         "cards": "01_Game.ipynb",
+         "trump": "01_Game.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "game.py"]
 
 doc_url = "https://Pascal.github.io/durak/"
 
