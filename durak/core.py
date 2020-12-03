@@ -47,7 +47,7 @@ class Card():
     def __repr__(self):
         val = self.value if self.value not in self._face_matching.keys() else self._face_matching.get(self.value)
         return f'Card({val}, {self.color}, trump={self.is_trump})'
-
+show_doc(make_trumps)
 
 # Cell
 CARD_VALUES = [i for i in range(6,15)]
