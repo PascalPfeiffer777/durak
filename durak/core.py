@@ -7,7 +7,6 @@ __all__ = ['Card', 'CARD_VALUES', 'CARD_COLORS', 'generate_random_card', 'test_i
 
 # Cell
 import functools
-from itertools import permutations
 import random
 
 # Cell
