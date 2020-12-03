@@ -10,7 +10,7 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: card
+      title: Classes
       url: core.html
     - output: web,pdf
       title: Title
