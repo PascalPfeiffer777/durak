@@ -36,7 +36,7 @@ class Card():
 
     def __repr__(self):
         val = self.value if self.value not in self._face_matching.keys() else self._face_matching.get(self.value)
-        return f'Card({val}, {self.color}, trump={self.is_trump})'
+        return f'({val}, {self.color})'
 
 CARD_VALUES = [i for i in range(6,15)]
 CARD_COLORS = ['Heart', 'Spade', 'Club', 'Diamond']

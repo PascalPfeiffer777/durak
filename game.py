@@ -4,7 +4,8 @@ from core.game_logic import (
                        deal_starting_hand,
                        draw_trump_card,
                        make_trumps,
-                       determine_starting_player, play_attack, 
+                       determine_starting_player, 
+                       play_attack, 
                        )
 
 from core.player import Player
@@ -23,6 +24,7 @@ def main():
 
     play_attack(players, table) 
     determine_neibghours(players)
+    play_attack(players, table)
         
 if __name__ == "__main__":
     main()

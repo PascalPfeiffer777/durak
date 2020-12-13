@@ -42,8 +42,15 @@ class Player:
     def attack_neighour(self):
         pass
 
-    def play_cards_to_neigbhour(self):
-        print('I want to play a card now!')
+    def play_cards_to_neigbhour(self, table):
+        if self._is_neighbour == True:
+            for card in self.hand:
+                if (card.value in [c.value for c in table]) & (len(table) < 7):
+                    print(f'{self.name} added a {card} to the table.')
+                    self.hand.remove(card)
+                    table.append(card)
+                     
+    
 
 
     def __repr__(self):

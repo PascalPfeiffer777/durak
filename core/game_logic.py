@@ -8,11 +8,7 @@ def generate_random_card():
 
 
 def gen_card_deck():
-    card_deck = []
-    for val in CARD_VALUES:
-        for c in CARD_COLORS:
-            card_deck.append(Card(val, c))
-    return card_deck
+    return [Card(v,c) for v in CARD_VALUES for c in CARD_COLORS]
 
 
 def iterate_cards(players):
@@ -69,8 +65,16 @@ def determine_neibghours(players):
 
 def play_attack(players, table_cards):
     attacker =  next(p for p in players if p._is_turn==True) 
-    table_cards.append(attacker.play_random_card())
+    card = attacker.play_random_card()
     attacker_index = players[::-1].index(attacker)
     defender =  players[::-1][attacker_index -1]
     defender._is_defender=True
-    print(f'{attacker.name} played {table_cards[0]} on {defender.name}.')
+    print(f'{attacker.name} played {card} on {defender.name}.')
+    table_cards.append(card)
+
+def play_defense(players, table_cards):
+    pass #TODO: Probably a good place to continue :)
+    # try to forward
+    # try to cover
+    # pick up cards
+
