@@ -39,4 +39,4 @@ class Card():
         return f'Card({val}, {self.color}, trump={self.is_trump})'
 
 CARD_VALUES = [i for i in range(6,15)]
-CARD_COLORS = ['heart', 'spade', 'club', 'diamond']
+CARD_COLORS = ['Heart', 'Spade', 'Club', 'Diamond']

@@ -55,3 +55,22 @@ def draw_cards(players, cards):
             p.draw_card(cards.pop())
             if not cards:
                 break
+
+def determine_neibghours(players):
+    defender =  next(p for p in players if p._is_defender==True)
+    defender_index = players.index(defender)
+    right_neibour, left_neighbour =  defender_index + 1, defender_index - 1 
+    players[left_neighbour]._is_neighbour = True
+    try: 
+        players[right_neibour]._is_neighbour = True
+    except IndexError:
+        players[0]._is_neighbour = True
+    print(f'Neighbours: {[p.name for p in players if p._is_neighbour]}')
+
+def play_attack(players, table_cards):
+    attacker =  next(p for p in players if p._is_turn==True) 
+    table_cards.append(attacker.play_random_card())
+    attacker_index = players[::-1].index(attacker)
+    defender =  players[::-1][attacker_index -1]
+    defender._is_defender=True
+    print(f'{attacker.name} played {table_cards[0]} on {defender.name}.')
