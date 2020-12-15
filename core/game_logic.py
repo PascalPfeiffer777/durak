@@ -35,7 +35,8 @@ def draw_trump_card(cards):
 def determine_starting_player(players):
     beginner = sorted(players, key=lambda x: [
                       y for y in x.hand if y.is_trump])[0]
-    beginner.start_turn() 
+    beginner.start_turn()
+    #determine_positions(players) 
     print(f'{beginner.name} starts the game.')
 
 def make_trumps(players, trump):
@@ -52,29 +53,23 @@ def draw_cards(players, cards):
             if not cards:
                 break
 
-def determine_neibghours(players):
-    defender =  next(p for p in players if p._is_defender==True)
-    defender_index = players.index(defender)
-    right_neibour, left_neighbour =  defender_index + 1, defender_index - 1 
-    players[left_neighbour]._is_neighbour = True
-    try: 
-        players[right_neibour]._is_neighbour = True
-    except IndexError:
-        players[0]._is_neighbour = True
-    print(f'Neighbours: {[p.name for p in players if p._is_neighbour]}')
+def determine_positions(players):
+    r_players = players[::-1]
+    attacker =  next(p for p in r_players if p.is_attacker==True)
+    attacker_index = r_players.index(attacker)
+    r_players[attacker_index -1].is_defender = True
+    r_players[attacker_index].is_neighbour = True
+    r_players[attacker_index - 2].is_neighbour = True
+    print(f'Neighbours: {[p.name for p in players if p.is_neighbour]}')
+
 
 def play_attack(players, table_cards):
-    attacker =  next(p for p in players if p._is_turn==True) 
+    attacker =  next(p for p in players if p.is_attacker==True) 
     card = attacker.play_random_card()
-    attacker_index = players[::-1].index(attacker)
-    defender =  players[::-1][attacker_index -1]
-    defender._is_defender=True
+    defender =  next(p for p in players if p.is_defender==True) 
     print(f'{attacker.name} played {card} on {defender.name}.')
     table_cards.append(card)
 
-def play_defense(players, table_cards):
-    pass #TODO: Probably a good place to continue :)
-    # try to forward
-    # try to cover
-    # pick up cards
 
+def next_players_turn(players):
+    pass
