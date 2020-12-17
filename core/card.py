@@ -31,12 +31,17 @@ class Card():
             raise NotImplementedError
         elif (self.is_trump == True) & (other.is_trump == False):
             return True
+        elif self._matches_color(other):
+            return self.value > other.value
         else:
-            return self.value >= other.value
+            return False
 
     def __repr__(self):
         val = self.value if self.value not in self._face_matching.keys() else self._face_matching.get(self.value)
         return f'({val}, {self.color})'
+
+    def __hash__(self):
+        return hash(repr(self))
 
 CARD_VALUES = [i for i in range(6,15)]
 CARD_COLORS = ['Heart', 'Spade', 'Club', 'Diamond']

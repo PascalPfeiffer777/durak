@@ -45,14 +45,6 @@ def make_trumps(players, trump):
             card.make_trump()
 
 
-def draw_cards(players, cards):
-    while min([len(p.hand) for p in players]) < 6:
-        for p in players:
-            # TODO: Make sure drawing is in the right order!
-            p.draw_card(cards.pop())
-            if not cards:
-                break
-
 def determine_positions(players):
     r_players = players[::-1]
     attacker =  next(p for p in r_players if p.is_attacker==True)
