@@ -35,8 +35,7 @@ def draw_trump_card(cards):
 def determine_starting_player(players):
     beginner = sorted(players, key=lambda x: [
                       y for y in x.hand if y.is_trump])[0]
-    beginner.start_turn()
-    #determine_positions(players) 
+    beginner.start_turn() 
     print(f'{beginner.name} starts the game.')
 
 def make_trumps(players, trump):

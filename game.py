@@ -15,10 +15,10 @@ def main():
         p.join_table(table)
 
 
-    table.deal_starting_hand(players, table.deck)
-    table.draw_trump_card(table.deck)
-    table.make_trumps(players)
-    table.determine_starting_player(players)
+    table.deal_starting_hand()
+    table.draw_trump_card()
+    table.make_trumps()
+    table.determine_starting_player()
     while True:
         play_attack(players, table) 
         import time; time.sleep(5)
