@@ -41,6 +41,13 @@ class Table(list):
             if card.color == self.deck[0].color:
                 card.make_trump()
 
+    def reset_positions(self):
+        for p in self.players:
+            p.is_attacker = False
+            p.is_defender = False
+            p.is_neighbour = False
+            p._started_defending = False
+
     def determine_positions(self):
         r_players = self.players[::-1]
         attacker =  next(p for p in r_players if p.is_attacker==True)
@@ -56,9 +63,7 @@ class Table(list):
             p.right_neigbhour = r_players[r_players.index(p) - 1]
 
     def draw_cards_after_round(self):
-        while min([len(p.hand) for p in self.players]) < 6:
-            for p in self.players:
-                # TODO: Make sure drawing is in the right order!
+        for p in self.players:
+            while len(p.hand) < 6:
                 p.draw_card(self.deck.pop())
-                if not self.deck:
-                    break
+                

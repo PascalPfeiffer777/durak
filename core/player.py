@@ -27,7 +27,8 @@ class Player:
     @is_attacker.setter
     def is_attacker(self, v):
         self._is_attacker = v 
-        self.table.determine_positions()
+        if v:
+            self.table.determine_positions()
 
 
     def join_table(self, table):
@@ -35,7 +36,7 @@ class Player:
 
 
     def start_turn(self):
-        self.is_defender = False
+        self.table.reset_positions()
         self.is_attacker = True
         
 
@@ -70,24 +71,15 @@ class Player:
             self.draw_card(table_cards.pop())
         self.table.draw_cards_after_round()
         self._started_defending = False
-        self.right_neigbhour.start_turn()
         print(f'{self.name} picked up the cards.')
+        self.right_neigbhour.start_turn()
+        
 
     def check_if_cover_is_possible(self, table_cards):
         possibe = len({v:k for k,v in zip(self.hand, table_cards) if v<k}) == len(table_cards)
         if possibe:
             print(f'{self.name} tries to cover the cards.')
         return possibe
-        # hand_ = list(sorted(self.hand))
-        # for c in table_cards:
-        #     for c_ in hand_:
-        #         if c_ > c:
-        #             hand_.remove(c_)
-        #             break
-        #     else:
-        #         return False
-        # print(f'{self.name} tries to cover the cards.')
-        # return True
 
     def covered_cards_succesfully(self):
         print(f'{self.name} covered the cards successfully!')
@@ -99,37 +91,25 @@ class Player:
     def cover_cards(self, table_cards):
         cover = {v:k for k,v in zip(self.hand, table_cards) if v<k}
         for card in cover.values():
-            self.play_card(card, table_cards)
+            self.play_card(card, table_cards=table_cards)
+        if set(table_cards).difference(set(cover.values())) != set(cover.keys()):
+            for card in cover.values():
+                self.hand.append(card)
+                table_cards.remove(card)
+            if self.check_if_cover_is_possible(table_cards):
+                self.cover_cards(table_cards)
+            else:
+                self.pick_up_cards(table_cards)
+        else:
+            self.covered_cards_succesfully()
         
-        # table_cards_before_cover = table_cards[:]
-        # self.hand = list(sorted(self.hand))
-        # for c in table_cards_before_cover:
-        #     for c_ in self.hand:
-        #         if c_ > c:
-        #             self._self_laid_cards.append(c_)
-        #     #        print('Table Cads before cover: ', table_cards_before_cover)
-        #             print(f'{self.name} covers {c} with {c_}')
-        #             self.play_card(c_, table_cards)
-        #     #       print('Table Cads after cover: ', table_cards)
-        #             if set(table_cards).difference(set(self._self_laid_cards)) != set(table_cards_before_cover):
-        #                 for card in self._self_laid_cards:
-        #                     self.hand.append(card)
-        #                     table_cards.remove(card)
-        #                     self._self_laid_cards.remove(card)
-        #                 if self.check_if_cover_is_possible(table_cards):
-        #                     self.cover_cards(table_cards)                           
-        #                     self.covered_cards_succesfully()
-        #                 else:
-        #                     self.pick_up_cards(table_cards) 
-        #             self.covered_cards_succesfully()
-
-
     def forward_cards(self, value, table_cards):
         self._started_defending = False
         self.is_defender = False
+        self.table.reset_positions()
         self.is_attacker = True    
         card = next(v for v in self.hand if v.value == value)
-        print(f'{self.name} forwards the cards with a {card}.')
+        print(f'{self.name} forwards the cards to {self.right_neigbhour.name} with a {card}.')
         self.play_card(card, table_cards)
    
 
@@ -144,11 +124,11 @@ class Player:
     def play_defense(self, table_cards):
         if (self._is_defender != True) | (self._started_defending == True):
             return
-        self._started_defending = True
         unique_values = list(set(v.value for v in table_cards))  
         if (len(unique_values)==1) & (unique_values[0] in [c.value for c in self.hand]) & (len(table_cards) + 1 <= len(self.right_neigbhour.hand)):
             self.forward_cards(value=unique_values[0], table_cards=table_cards)
         elif self.check_if_cover_is_possible(table_cards):
+            self._started_defending = True
             self.cover_cards(table_cards)
         else:
             self.pick_up_cards(table_cards)
