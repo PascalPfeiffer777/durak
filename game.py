@@ -21,7 +21,7 @@ def main():
     table.determine_starting_player()
     while True:
         play_attack(players, table) 
-        import time; time.sleep(5)
+        import time; time.sleep(2)
 
         
 if __name__ == "__main__":

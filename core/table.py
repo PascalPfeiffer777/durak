@@ -55,8 +55,8 @@ class Table(list):
         r_players[attacker_index -1].is_defender = True
         r_players[attacker_index].is_neighbour = True
         r_players[attacker_index - 2].is_neighbour = True
-        r_players[attacker_index - 3].is_neighbour = False
-        r_players[attacker_index - 1].is_neighbour = False
+        # r_players[attacker_index - 3].is_neighbour = False
+        # r_players[attacker_index - 1].is_neighbour = False
  #       print(f'Neighbours: {[p.name for p in self.players if p.is_neighbour]}')
         for p in r_players:
             p.defending_player = r_players[attacker_index -1]
@@ -64,6 +64,6 @@ class Table(list):
 
     def draw_cards_after_round(self):
         for p in self.players:
-            while len(p.hand) < 6:
+            while (len(p.hand) < 6) & (len(self.deck) > 0):
                 p.draw_card(self.deck.pop())
                 

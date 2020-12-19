@@ -115,14 +115,14 @@ class Player:
 
 
     def play_cards_to_neigbhour(self, table_cards):
-        if self.is_neighbour == True:
+        if (self.is_neighbour == True) & len(table_cards) > 0:
             for card in self.hand:
                 if (card.value in [c.value for c in table_cards]) & (len(table_cards) < 7) & (len(self.defending_player.hand) > len(table_cards)):
                     print(f'{self.name} added a {card} to the table_cards.')
                     self.play_card(card, table_cards)
                      
     def play_defense(self, table_cards):
-        if (self._is_defender != True) | (self._started_defending == True):
+        if (self._is_defender != True) | (self._started_defending == True) | (len(table_cards) == 0):
             return
         unique_values = list(set(v.value for v in table_cards))  
         if (len(unique_values)==1) & (unique_values[0] in [c.value for c in self.hand]) & (len(table_cards) + 1 <= len(self.right_neigbhour.hand)):
