@@ -1,7 +1,5 @@
-from core.game_logic import (
-                       gen_card_deck,
-                       play_attack 
-                       )
+import time
+from core.game_logic import gen_card_deck, play_attack
 
 from core.player import Player
 from core.table import Table
@@ -21,7 +19,7 @@ def main():
     table.determine_starting_player()
     while True:
         play_attack(players, table) 
-        import time; time.sleep(2)
+        time.sleep(0.2)
 
         
 if __name__ == "__main__":

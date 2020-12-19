@@ -55,9 +55,6 @@ class Table(list):
         r_players[attacker_index -1].is_defender = True
         r_players[attacker_index].is_neighbour = True
         r_players[attacker_index - 2].is_neighbour = True
-        # r_players[attacker_index - 3].is_neighbour = False
-        # r_players[attacker_index - 1].is_neighbour = False
- #       print(f'Neighbours: {[p.name for p in self.players if p.is_neighbour]}')
         for p in r_players:
             p.defending_player = r_players[attacker_index -1]
             p.right_neigbhour = r_players[r_players.index(p) - 1]

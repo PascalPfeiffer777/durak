@@ -21,4 +21,5 @@ def play_attack(players, table_cards):
     card = attacker.play_random_card()
     defender =  next(p for p in players if p.is_defender==True) 
     print(f'{attacker.name} played {card} on {defender.name}.')
+    attacker.check_victory()
     table_cards.append(card)
